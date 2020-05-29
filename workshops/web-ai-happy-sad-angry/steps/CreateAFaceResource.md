@@ -1,128 +1,128 @@
-# Create a Face API resource
+# <a name="create-a-face-api-resource"></a>Criar um recurso da API de Detecção Facial
 
-In the [previous step](./DeployTheWebAppToTheCloud.md) deployed your Web App to the cloud, hosted in Azure. In this step you will create a Face API resource that can be used to analyse the camera images.
+No [etapa anterior](./DeployTheWebAppToTheCloud.md), você implantou seu aplicativo Web na nuvem, hospedado no Azure. Nesta etapa, você criará um recurso da API de Detecção Facial que pode ser usado para analisar as imagens da câmera.
 
-## Using AI to analyze images
+## <a name="using-ai-to-analyze-images"></a>Usando IA para analisar imagens
 
-AI, or Artificial Intelligence is where computers can perform tasks normally associated with people, not computers. Computers can learn how to do something, rather than be told how to do it using explicit instructions by writing programs. For example, a computer can be trained how to recognize cats by being shown thousands of images of cats. You can then give it an image it hasn't seen before, and it can tell if there is a cat in the image. This is called Machine Learning or ML. Once taught, the computer builds a model, and this can be re-used by other computers to perform the same task.
+Com a IA, ou inteligência artificial, os computadores podem executar tarefas normalmente associadas a pessoas, e não a computadores. Os computadores podem aprender a fazer algo, em vez de serem instruídos sobre como fazê-lo por meio das instruções explícitas presentes nos programas. Por exemplo, um computador pode ser treinado para reconhecer gatos após serem mostradas a ele milhares de imagens de gatos. Em seguida, você pode fornecer a ele uma imagem que ele não viu antes e ele poderá dizer se há um gato na imagem. Isso se chama Machine Learning, ou ML. Depois de ensinado, o computador cria um modelo, que pode ser usado por outros computadores para executar a mesma tarefa.
 
-You can train Machine Learning models yourself, or you can use models created by others. Microsoft has a range of these pre-trained models available, called [Cognitive Services](https://azure.microsoft.com/services/cognitive-services/?WT.mc_id=hackwithazure-hackathon-cxa). These models include recognizing images, recognizing speech, or translating between different languages.
+Você pode treinar modelos de machine learning por conta própria ou pode usar modelos criados por outras pessoas. A Microsoft disponibiliza uma variedade de modelos pré-treinados, chamados [Serviços Cognitivos](https://azure.microsoft.com/services/cognitive-services/?WT.mc_id=hackwithazure-hackathon-cxa). Esses modelos incluem o reconhecimento de imagens, o reconhecimento de fala e a tradução entre idiomas.
 
-One of the models, the [Face Api](https://azure.microsoft.com/services/cognitive-services/face/?WT.mc_id=hackwithazure-hackathon-cxa), can be used to look for faces in an image. If it finds any, it can guess the emotion shown on the face (happiness, sadness etc.), tell if the person is smiling, look for hair color, facial hair, even estimate the persons age. We can use this Api in our app to look for faces in the uploaded image, and predict the emotion being displayed on each face.
+Um dos modelos, a [API de Detecção Facial](https://azure.microsoft.com/services/cognitive-services/face/?WT.mc_id=hackwithazure-hackathon-cxa), pode ser usado para procurar rostos em uma imagem. Quando encontra um rosto, ela pode identificar qual emoção ele está expressando (felicidade, tristeza etc.), indicar se a pessoa está sorrindo, procurar a cor de cabelo, se há pelos no rosto e até mesmo estimar a idade da pessoa. Podemos usar essa API em nosso aplicativo para procurar rostos na imagem carregada e prever a emoção exibida em cada rosto.
 
-## Sign up for a Face Api subscription key
+## <a name="sign-up-for-a-face-api-subscription-key"></a>Inscrever-se para receber uma chave de assinatura da API de Detecção Facial
 
-Before you can use the Face Api, you will need a subscription key. You can get this from your Azure account that was used to deploy the web app.
+Para usar a API de Detecção Facial, você precisará de uma chave de assinatura. Ela pode ser obtida em sua conta do Azure usada para implantar o aplicativo Web.
 
-1. Open the Azure Portal from [portal.azure.com](https://portal.azure.com/?WT.mc_id=hackwithazure-hackathon-cxa). Log in if required.
+1. Abra o portal do Azure em [portal.azure.com](https://portal.azure.com/?WT.mc_id=hackwithazure-hackathon-cxa). Faça logon se necessário.
 
-1. Select *Create a resource* or select the green plus button.
+1. Selecione *Criar um recurso* ou clique no botão de adição verde.
 
-1. Search for *Face*
+1. Pesquise por *Detecção Facial*
   
-   ![Searching for Face in the Azure Portal](../images/SelectFaceInAzure.png)
+   ![Pesquisando por Detecção Facial no portal do Azure](../images/SelectFaceInAzure.png)
 
-1. Select *Face*, then select the **Create** button.
+1. Selecione *Detecção Facial* e clique no botão **Criar**.
 
-1. Enter the required details:
+1. Insira os detalhes necessários:
 
-   1. Give this a name. This needs to be globally unique as this will become part of a URL you need to call to find faces in the image.
+   1. Forneça um nome. Ele precisa ser globalmente exclusivo, pois se tornará parte de uma URL que você precisa chamar para encontrar rostos na imagem.
 
-   1. Select the Azure Subscription you want to use.
+   1. Selecione a assinatura do Azure que deseja usar.
 
-   1. Choose a location to run this code. Azure has 'regions' all around the world, a region being a group of data centers full of computers and other cloud hardware. Choose a region closest to you.
+   1. Escolha um local no qual o código será executado. O Azure tem "regiões" no mundo inteiro, sendo uma região um grupo de data centers repleto de computadores e outros hardwares de nuvem. Escolha a região mais próxima de você.
 
-   1. Select the pricing tier. With this app, you will make less than 20 calls a minute, and less than 30,000 calls a month, so select *F0*, the free tier. There is a paid tier for apps that need to use the service more often.
+   1. Selecione o tipo de preço. Com esse aplicativo, você fará menos de 20 chamadas por minuto e menos de 30.000 por mês. Sendo assim, selecione *F0*, a camada gratuita. Há uma camada paga para aplicativos que precisam usar o serviço com mais frequência.
 
-      > You can only have one free tier of each Azure Service, so if you have already created a free tier Face API resource before you will either need to use a paid tier, or connect to the existing resource.
+      > Você só pode ter uma camada gratuita de cada serviço do Azure, portanto, se já tiver criado um recurso da API de Detecção Facial na camada gratuita, precisará usar uma camada paga ou se conectar ao recurso existente.
 
-   1. Select the resource group you want to run the code in. One would have been created for you when you deployed the web app in an earlier step called something like `appsvc_linux_centralus`, so select this one.
+   1. Selecione o grupo de recursos no qual deseja executar o código. Foi criado um grupo de recursos quando você implantou o aplicativo Web em uma etapa anterior chamada `appsvc_linux_centralus`, portanto, selecione-o.
 
-      > Everything you create in Azure, such as access to the Face Api, App Services, and databases are called Resources. Resource groups are a way to group resources together so you can manage them in bulk. By having everything for this workshop in the same resource group makes it easy to delete everything at the end when you have finished.
+      > Tudo que você cria no Azure, como o acesso à API de Detecção Facial, os Serviços de Aplicativos e os bancos de dados, é chamado de Recurso. Os grupos de recursos são uma forma de agrupar esses recursos para que você possa gerenciá-los em massa. Ter tudo o que é usado neste workshop no mesmo grupo de recursos facilita a exclusão de tudo no final, quando você terminar.
 
-   1. Select the **Create** button.
+   1. Selecione o botão **Criar**.
 
-   ![The create face blade in Azure](../images/CreateFaceAzure.png)
+   ![A folha criar detecção facial no Azure](../images/CreateFaceAzure.png)
 
-1. The face resource will be created. You will be notified when done. Select **Go to resource** from the popup, or the notification pane.
+1. O recurso de detecção facial será criado. Quando concluído, você será notificado. Selecione **Ir para o recurso** no pop-up ou no painel de notificação.
   
-   ![The notification showing the face resource created](../images/FaceCreated.png)
+   ![Notificação mostrando que o recurso de detecção facial foi criado](../images/FaceCreated.png)
 
-1. From the resource, head to the *Quick Start* tab. Take a note of the *Key1* and *Endpoint* as you will need these later.
+1. No recurso, vá para a guia *Início Rápido*. Anote os valores de *Key1* e *Ponto de extremidade*, pois você precisará deles mais tarde.
 
-## Create configuration variables for the Face API key and endpoint
+## <a name="create-configuration-variables-for-the-face-api-key-and-endpoint"></a>Criar variáveis de configuração para a chave e o ponto de extremidade da API de Detecção Facial
 
-To use the Face API, you will need the key and endpoint you copied earlier. Ideally you don't want to put the key and endpoint for your Face API into your code, instead it should be stored in some kind of configuration.
+Para usar a API de Detecção Facial, você precisará da chave e do ponto de extremidade que copiou anteriormente. Idealmente, você não coloca a chave e o ponto de extremidade da API de Detecção Facial no código. Em vez disso, eles deve ser armazenados em algum tipo de configuração.
 
-Flask uses files called `.env` to store configuration data as key/value pairs. These are read at launch and are made available as environment variables that can be read from your Python code. The advantage of this method is you can create Application Settings in your Azure App Service that are read the same way - as environment variables.
+O Flask usa arquivos chamados `.env` para armazenar dados de configuração como pares de chave/valor. Eles são lidos na inicialização e são disponibilizados como variáveis de ambiente que podem ser lidas de seu código Python. A vantagem desse método é que você pode criar Configurações de Aplicativo em seu Serviço de Aplicativo do Azure, que são lidas da mesma maneira que as variáveis de ambiente.
 
-You should put all your secret keys into the `.env` file, and you should not check any `.env` files into source code control. Flask can access values in this file using the `python-dotenv` package.
+Coloque todas as suas chaves secretas no arquivo `.env` e não faça check-in de nenhum arquivo `.env` no controle do código-fonte. O Flask pode acessar os valores nesse arquivo usando o pacote `python-dotenv`.
 
-1. Open the `requirements.txt` file in Visual Studio Code.
+1. Abra o arquivo `requirements.txt` no Visual Studio Code.
 
-1. Add the following to the bottom of the file:
+1. Adicione o seguinte ao final do arquivo:
 
     ```python
     python-dotenv
     ```
 
-1. Save the file
+1. Salve o arquivo
 
-1. Install the new package from the terminal using the following command:
+1. Instale o novo pacote por meio do terminal usando o seguinte comando:
   
     ```sh
     pip install -r requirements.txt
     ```
 
-1. Create a new file file called `.env`.
+1. Crie um arquivo chamado `.env`.
 
-1. Add the following lines:
+1. Adicione as seguintes linhas:
 
    ```sh
    face_api_endpoint=<endpoint>
    face_api_key=<key>
    ```
 
-   Replace `<endpoint>` with the first part of the endpoint you noted down earlier from the Face Api Resource Quick start. You don't need the `/face/v1.0` part.
+   Substitua `<endpoint>` pela primeira parte do ponto de extremidade anotado anteriormente no Início Rápido do Recurso da API de Detecção Facial. Você não precisa da parte `/face/v1.0`.
 
-   For example, if your resource was called `HappySadAngryFaceApi`, then the endpoint showing in the portal will be `https://happysadangryfaceapi.cognitiveservices.azure.com/face/v1.0`. Set the `face_api_endpoint` to be `https://happysadangryfaceapi.cognitiveservices.azure.com`.
+   Por exemplo, se seu recurso se chamasse `HappySadAngryFaceApi`, o ponto de extremidade exibido no portal seria `https://happysadangryfaceapi.cognitiveservices.azure.com/face/v1.0`. Defina `face_api_endpoint` como `https://happysadangryfaceapi.cognitiveservices.azure.com`.
 
-   Replace `<key>` with one the key you noted down earlier from the Face Api Resource Quick start.
+   Substitua `<key>` pela chave que você anotou anteriormente no Início Rápido do Recurso da API de Detecção Facial.
 
-## Deploy the configuration variables to Azure App Service
+## <a name="deploy-the-configuration-variables-to-azure-app-service"></a>Implantar as variáveis de configuração no Serviço de Aplicativo do Azure
 
-To use these values in your deployed app, you will need to add them to the Application Settings for your Azure App Service. This can be done from inside Visual Studio Code.
+Para usar esses valores no aplicativo implantado, você precisará adicioná-los às Configurações de Aplicativo de seu Serviço de Aplicativo do Azure. Isso pode ser feito de dentro do Visual Studio Code.
 
-1. Open the command palette:
-   1. On Windows, press Ctrl+Shift+P
-   1. On MacOS, press Cmd+Shift+P
+1. Abra a paleta de comandos:
+   1. No Windows, pressione Ctrl + Shift + P
+   1. No MacOS, pressione Cmd + Shift + P
 
-1. Select *Azure App Service: Upload Local Settings...*
+1. Selecione *Serviço de Aplicativo do Azure: Carregar Configurações Locais...*
 
-   ![The command palette showing the Azure App Service: Upload Local Settings option](../images/UploadLocalSettings.png)
+   ![A paleta de comandos mostrando a opção do Serviço de Aplicativo do Azure: Carregar Configurações Locais](../images/UploadLocalSettings.png)
 
-1. Select the `.env` file you created.
+1. Selecione o arquivo `.env` que você criou.
 
-   ![Selecting the local env file](../images/SelectEnvFile.png)
+   ![Selecionando o arquivo env local](../images/SelectEnvFile.png)
 
-1. Select the Azure subscription for your web app.
+1. Selecione a assinatura do Azure para o aplicativo Web.
   
-   ![The command palette showing the select subscription option](../images/SelectDeploySubscription.png)
+   ![A paleta de comandos mostrando a opção Selecionar Assinatura](../images/SelectDeploySubscription.png)
 
-1. Select the web app you deployed to.
+1. Selecione o aplicativo Web no qual a implantação foi feita.
 
-The settings will be deployed to your web app. You will see a pop up once this is complete.
+As configurações serão implantadas no aplicativo Web. Você verá um pop-up quando o processo for concluído.
 
-## Verify the Application Settings
+## <a name="verify-the-application-settings"></a>Verificar as Configurações de Aplicativo
 
-You can view the application settings from the Azure tab of the Visual Studio Code toolbar.
+Você pode exibir as configurações de aplicativo na guia Azure da barra de ferramentas do Visual Studio Code.
 
-1. In the *App Service* section, expand your subscription.
+1. Na seção *Serviço de Aplicativo*, expanda sua assinatura.
 
-1. Expand the *Application Settings* section.
+1. Expanda a seção *Configurações de Aplicativo*.
 
-You should see the two new application settings, `face_api_endpoint` and `face_api_key` with the values hidden. You can show and hide the values by clicking them
+Você deve ver as duas novas configurações de aplicativo, `face_api_endpoint` e `face_api_key`, com os valores ocultos. É possível exibir e ocultar os valores clicando neles
 
-## Next step
+## <a name="next-step"></a>Próxima etapa
 
-In this step you created a Face API resource that can be used to analyse the camera images. In the [next step](./CheckTheEmotion.md), you will build out the game to capture frames from the camera and look for emotions.
+Nesta etapa, você criou um recurso da API de Detecção Facial que pode ser usado para analisar as imagens da câmera. Na [próxima etapa](./CheckTheEmotion.md), você criará o jogo para capturar quadros da câmera e procurar emoções.

@@ -1,80 +1,80 @@
-# Deploy the Web App to the cloud using Azure App Service
+# <a name="deploy-the-web-app-to-the-cloud-using-azure-app-service"></a>Implantar o aplicativo Web na nuvem usando o Serviço de Aplicativo do Azure
 
-In the [previous step](./CreateTheWebPage.md) created the web page for the game that shows the emotion you are trying to show, and captures images from the camera. In this step you will deploy this Web App to the cloud using Azure App Service.
+Na [etapa anterior](./CreateTheWebPage.md), você criou a página da Web para o jogo que mostra a emoção que você está tentando transmitir e captura imagens da câmera. Nesta etapa, você implantará esse aplicativo Web na nuvem usando o Serviço de Aplicativo do Azure.
 
-## Running Web Apps in the cloud
+## <a name="running-web-apps-in-the-cloud"></a>Como executar aplicativos Web na nuvem
 
-In the last step, you ran the Web App on your local computer. This means that you can see the web page, but it is not available to anyone else. To make it available, it needs to run on a computer somewhere that is accessible over the internet. Cloud services allow you to easily deploy your Web Sites to computers running in the cloud. The cloud service available from Microsoft is called [Azure](https://azure.microsoft.com/?WT.mc_id=hackwithazure-hackathon-cxa).
+Na última etapa, você executou o aplicativo Web no computador local. Isso significa que você pode ver a página da Web, mas ela não está disponível para outras pessoas. Para disponibilizá-la, ela precisa ser executada em um computador em algum lugar que esteja acessível pela Internet. Os serviços de nuvem permitem que você implante facilmente seus sites da Web em computadores em execução na nuvem. O serviço de nuvem disponível da Microsoft é chamado [Azure](https://azure.microsoft.com/?WT.mc_id=hackwithazure-hackathon-cxa).
 
-Running web sites used to be a lot of work. You would need to configure a computer connected to the internet, install software to host the web site, connect it to the internet with a domain name, configure security so hackers couldn't break in, and ensure everything is backed up in case of something breaking. For busy sites you might want to configure multiple computers to spread the load, and services to ensure one computer doesn't get overloaded handling requests. Now, thanks to services in the cloud you can just deploy your code and let the cloud provider make everything else work.
+A execução de sites da Web costumava ser muito trabalhosa. Você precisaria configurar um computador conectado à Internet, instalar o software para hospedar o site, conectá-lo à Internet com um nome de domínio, configurar a segurança para que os hackers não conseguissem invadir e garantir que tudo fosse armazenado em backup no caso de alguma interrupção. Para sites ocupados, talvez você queira configurar vários computadores para distribuir a carga e serviços para garantir que um computador não fique sobrecarregado com solicitações de tratamento. Agora, graças aos serviços na nuvem, você pode simplesmente implantar seu código e deixar que o provedor de nuvem faça tudo funcionar.
 
-Using your Azure subscription, you will be able to deploy your code to the cloud, with Azure managing all the complexities for you using [Azure App Service](https://azure.microsoft.com/services/app-service/?WT.mc_id=hackwithazure-hackathon-cxa). You configure an App Service and send your code to it, and Azure handles the rest.
+Usando sua assinatura do Azure, você poderá implantar seu código na nuvem, com o Azure gerenciando todas as complexidades para você usando o [Serviço de Aplicativo do Azure](https://azure.microsoft.com/services/app-service/?WT.mc_id=hackwithazure-hackathon-cxa). Você configura um Serviço de Aplicativo e envia seu código para ele, e o Azure lida com o resto.
 
-## Deploying to an App Service
+## <a name="deploying-to-an-app-service"></a>Implantação em um Serviço de Aplicativo
 
-You can configure an Azure App Service and deploy your code from inside Visual Studio Code.
+Você pode configurar um Serviço de Aplicativo do Azure e implantar seu código de dentro do Visual Studio Code.
 
-1. Open the command palette:
-  1. On Windows, press Ctrl+Shift+P
-  1. On MacOS, press Cmd+Shift+P
+1. Abra a paleta de comandos:
+  1. No Windows, pressione Ctrl + Shift + P
+  1. No MacOS, pressione Cmd + Shift + P
 
-1. Select *Azure App Service: Deploy to Web App...*
+1. Selecione *Serviço de Aplicativo do Azure: Implantar no aplicativo Web...*
   
-   ![The command palette showing the Azure App Service: Deploy to Web App option](../images/CommandPaletteDeployAppService.png)
+   ![A paleta de comandos mostrando a opção do Serviço de Aplicativo do Azure: Opção Implantar no aplicativo Web](../images/CommandPaletteDeployAppService.png)
 
-1. You will be asked what code you want to deploy. This option will automatically select the folder with your code in it, so select that.
+1. Você deverá informar o código que deseja implantar. Essa opção selecionará automaticamente a pasta com seu código. Portanto, selecione-a.
 
-   ![The command palette showing the deployment source option](../images/SelectDeployFolder.png)
+   ![A paleta de comandos mostrando a opção Origem da Implantação](../images/SelectDeployFolder.png)
 
-1. If you have never signed into Azure from Visual Studio Code before, you will be asked to sign in.
-   1. Select *Sign in to Azure...*
-   1. Your browser will be launched, and you can sign in with your Azure account.
-   1. Once signed in from the browser, you can close the web page that was launched.
+1. Se você nunca tiver entrado no Azure do Visual Studio Code, será solicitado a entrar.
+   1. Selecione *Entrar no Azure...*
+   1. Seu navegador será iniciado, e você poderá entrar com sua conta do Azure.
+   1. Depois de entrar usando o navegador, você poderá fechar a página da Web que foi iniciada.
 
-1. Select the Azure subscription you want to use.
+1. Selecione a assinatura do Azure que deseja usar.
   
-   ![The command palette showing the select subscription option](../images/SelectDeploySubscription.png)
+   ![A paleta de comandos mostrando a opção Selecionar Assinatura](../images/SelectDeploySubscription.png)
 
-1. Select *+ Create New Web App*
+1. Selecione *+ Criar Novo Aplicativo Web*
 
-   There are 2 *Create New Web App* options, one marked as *Advanced*. You want the normal one, **not** the *Advanced* one.
+   Há duas opções para *Criar Aplicativo Web*; uma está marcada como *Avançado*. Você quer a opção normal, **não** a opção *Avançado*.
 
-   ![The command palette showing the create web app option](../images/CreateNewWebApp.png)
+   ![A paleta de comandos mostrando a opção Criar Aplicativo Web](../images/CreateNewWebApp.png)
 
-1. Give your web app a name. This will be part of the public web site address, so needs to be unique across the world. For example, I might use `jimspythonwebapp2019`.
+1. Dê um nome para o aplicativo Web. Isso fará parte do endereço do site da Web público; portanto, precisa ser exclusivo em todo o mundo. Por exemplo, eu poderia usar `jimspythonwebapp2019`.
 
-   ![The command palette showing the new web app name option](../images/SelectWebAppName.png)
+   ![A paleta de comandos mostrando a opção Nome do Aplicativo Web](../images/SelectWebAppName.png)
 
-1. Select the runtime for your App Service App. This is a Python app, so select the latest version of the Python runtime, such as *Python 3.7*
+1. Selecione o runtime para seu aplicativo do Serviço de Aplicativo. Este é um aplicativo Python; portanto, selecione a versão mais recente do runtime do Python, como *Python 3.7*
 
-   ![The command palette showing the select runtime option](../images/SelectPythonRuntime.png)
+   ![A paleta de comandos mostrando a opção Selecionar Runtime](../images/SelectPythonRuntime.png)
 
-1. The App Service will start being created. You will see a progress bar on the bottom right, and this will show you once it is complete. You can monitor the progress from the *Output* window by selecting *View -> Output* and selecting *Azure App Service* from the window selector..
+1. O Serviço de Aplicativo começará a ser criado. Você verá uma barra de progresso na parte inferior direita, que mostrará quando ela for concluída. Você pode monitorar o progresso na janela *Saída* selecionando *Exibição > Saída* e selecionando *Serviço de Aplicativo do Azure* no seletor de janela.
 
-   ![The create app service progress bar](../images/CreateWebAppProgress.png)
+   ![A barra de progresso Criar Serviço de Aplicativo](../images/CreateWebAppProgress.png)
 
-1. Some popups wil appear asking if you want to make configuration changes to speed up deployment and always deploy this web app. Select **Yes** for both.
+1. Alguns pop-ups serão exibidos perguntando se você deseja fazer alterações de configuração para acelerar a implantação e sempre implantar este aplicativo Web. Selecione **Sim** para ambos.
   
-   ![The update workspace configuration dialog](../images/UpdateWorkspaceConfigDialog.png)
+   ![A caixa de diálogo Atualizar configuração do workspace](../images/UpdateWorkspaceConfigDialog.png)
   
-   ![The always deploy to the web app configuration dialog](../images/AlwaysDeployDialog.png)
+   ![A caixa de diálogo Sempre implantar na configuração do aplicativo Web](../images/AlwaysDeployDialog.png)
 
-1. A popup will appear showing the deployment progress. You can monitor the progress from the *Output* window by selecting *View -> Output* and selecting *Azure App Service* from the window selector.
+1. Um pop-up mostrando o progresso da implantação será exibido. Você pode monitorar o progresso na janela *Saída* selecionando *Exibição > Saída* e selecionando *Serviço de Aplicativo do Azure* no seletor de janela.
   
-   ![The deploy progress dialog](../images/DeployProgress.png)
+   ![A caixa de diálogo Progresso da implantação](../images/DeployProgress.png)
 
-1. Once the code has been deployed, you will be able to view the code over the internet. Launch your browser and open your web site. The address will be `https://<web app name>.azurewebsites.net/`. For example, for my web site this is `https://jimspythonwebapp2019.azurewebsites.net/`. You will see the game page.
+1. Depois que o código tiver sido implantado, você poderá exibir o código pela Internet. Inicie o navegador e abra seu site. O endereço será `https://<web app name>.azurewebsites.net/`. Por exemplo, para meu site, isso é `https://jimspythonwebapp2019.azurewebsites.net/`. Você verá a página do jogo.
 
-> These steps will create a Free tier App Service and deploy your app to it. You can only have one Free tier per subscription, so if you have already got a free app service running, use the *Create New Wep App Advanced* option, and create using a paid tier. Don't forget to delete this after you have finished the workshop to stop using your credits.
+> Essas etapas criarão um Serviço de Aplicativo de camada gratuita e implantarão seu aplicativo nele. Você só pode ter uma camada gratuita por assinatura. Portanto, se você já tiver um serviço de aplicativo gratuito em execução, use a opção *Criar Aplicativo Web Avançado* e crie usando uma camada paga. Não se esqueça de excluir isso depois de concluir o workshop para parar de usar seus créditos.
 
-## Resource groups
+## <a name="resource-groups"></a>Grupos de recursos
 
-In Azure, resources such as App Service or AI services must belong to a Resource Group. Resource Groups are logical groupings of resources, grouped any way that makes sense to you. Every resource has to belong to one and only one Resource Group.
+No Azure, os recursos como o Serviço de Aplicativo ou os serviços de IA precisam pertencer a um Grupo de Recursos. Os Grupos de Recursos são agrupamentos lógicos de recursos, agrupados de maneira que faça sentido para você. Cada recurso deve pertencer a apenas um Grupo de Recursos.
 
-Resource Groups are useful as you can use them to group resources together that make up an application. You can view all resources in the group, and manage them together, for example if you want to delete all the resources you can delete the Resource Group and all resources in it will be deleted.
+Os Grupos de Recursos são úteis, pois você pode usá-los para agrupar recursos que compõem um aplicativo. Você poderá ver todos os recursos no grupo e gerenciá-los juntos, por exemplo, se desejar excluir todos os recursos, poderá excluir o Grupo de Recursos, e todos os recursos nele serão excluídos.
 
-When your App Service was created, it would have been created inside a new Resource Group, probably named something like `appsvc_linux_centralus`. We will be adding all new resources to this Resource Group in the remainder of this workshop, and deleting this Resource Group at the end to remove all resources.
+Quando o seu Serviço de Aplicativo foi criado, ele teria sido criado dentro de um novo Grupo de Recursos, provavelmente com o nome `appsvc_linux_centralus`. Vamos adicionar todos os novos recursos a esse Grupo de Recursos no restante deste workshop e excluir esse Grupo de Recursos no final para remover todos os recursos.
 
-## Next step
+## <a name="next-step"></a>Próxima etapa
 
-In this step you deployed your Web App to the cloud, hosted in Azure. In the [next step](./CreateAFaceResource.md), you will create a Face API resource that can be used to analyse the camera images.
+Nesta etapa, você implantou seu aplicativo Web na nuvem, hospedado no Azure. Na [próxima etapa](./CreateAFaceResource.md), você criará um recurso da API de Detecção Facial que pode ser usado para analisar as imagens da câmera.

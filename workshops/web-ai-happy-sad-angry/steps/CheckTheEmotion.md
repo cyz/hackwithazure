@@ -1,32 +1,32 @@
-# Build out the game to capture from the camera and check for emotion
+# <a name="build-out-the-game-to-capture-from-the-camera-and-check-for-emotion"></a>Crie o jogo para capturar da câmera e verifique se há emoções
 
-In the [previous step](./CreateAFaceResource.md) you created a Face API resource that can be used to analyse the camera images. In this step you will build out the game to capture frames from the camera and look for emotions.
+Na [etapa anterior](./CreateAFaceResource.md), você criou um recurso da API de Detecção Facial que pode ser usado para analisar as imagens da câmera. Nesta etapa, você criará o jogo para capturar quadros da câmera e procurar emoções.
 
-## Install the Face Api package
+## <a name="install-the-face-api-package"></a>Instale o pacote da API de Detecção Facial
 
-The Face Api is available as a Python package.
+A API de Detecção Facial está disponível como um pacote do Python.
 
-1. Open the `requirements.txt` file in Visual Studio Code.
+1. Abra o arquivo `requirements.txt` no Visual Studio Code.
 
-1. Add the following to the bottom of the file:
+1. Adicione o seguinte ao final do arquivo:
 
    ```python
    azure-cognitiveservices-vision-face
    ```
 
-1. Save the file
+1. Salvar o arquivo
 
-1. Install the new package from the terminal using the following command:
+1. Instale o novo pacote por meio do terminal usando o seguinte comando:
   
    ```sh
    pip install -r requirements.txt
    ```
 
-## Write the code
+## <a name="write-the-code"></a>Escrever o código
 
-1. Open the `app.py` file in Visual Studio Code.
+1. Abra o arquivo `app.py` no Visual Studio Code.
 
-1. Add imports for the Face Api package and an authentication package, as well as some system libraries and additional imports from the Flask module to the top of the file.
+1. Adicione importações para o pacote da API de Detecção Facial e um pacote de autenticação, bem como algumas bibliotecas do sistema e importações adicionais do módulo Flask para a parte superior do arquivo.
   
    ```python
    import random, os, io, base64
@@ -35,7 +35,7 @@ The Face Api is available as a Python package.
    from msrest.authentication import CognitiveServicesCredentials
    ```
 
-1. Add the following code below the imports:
+1. Adicione o seguinte código abaixo das importações:
 
    ```python
    credentials = CognitiveServicesCredentials(os.environ['face_api_key'])
@@ -54,7 +54,7 @@ The Face Api is available as a Python package.
      return max(zip(emotions.values(), emotions.keys()))[1]
    ```
 
-1. Create a new route for `/result` that accepts POST requests to the bottom of the file.
+1. Crie uma rota para `/result` que aceita solicitações POST na parte inferior do arquivo.
 
    ```python
    @app.route('/result', methods=['POST'])
@@ -88,9 +88,9 @@ The Face Api is available as a Python package.
        })
    ```
 
-1. Open the `home.html` file from the `templates` folder.
+1. Abra o arquivo `home.html` da pasta `templates`.
 
-1. Add the following code inside the event listener in the `<script>` tag. Put it after the other code already in this listener.
+1. Adicione o código a seguir dentro do ouvinte de eventos na marca `<script>`. Coloque-o após o outro código já neste ouvinte.
 
     ```js
     var message = document.getElementById('message');
@@ -121,44 +121,44 @@ The Face Api is available as a Python package.
     });
     ```
 
-## Deploy the code
+## <a name="deploy-the-code"></a>Implantar o código
 
-Once the code is working locally, it can be deployed to Azure so others can play the game.
+Depois que o código estiver funcionando localmente, ele poderá ser implantado no Azure para que o jogo possa ser jogado por outras pessoas.
 
-1. Open the command palette:
+1. Abra a paleta de comandos:
 
-   1. On Windows, press Ctrl+Shift+P
-   1. On MacOS, press Cmd+Shift+P
+   1. No Windows, pressione Ctrl + Shift + P
+   1. No MacOS, pressione Cmd + Shift + P
 
-1. Select *Azure App Service: Deploy to Web App...*
+1. Selecione *Serviço de Aplicativo do Azure: Implantar no aplicativo Web...*
   
-   ![The command palette showing the Azure App Service: Deploy to Web App option](../images/CommandPaletteDeployAppService.png)
+   ![A paleta de comandos mostrando a opção do Serviço de Aplicativo do Azure: Opção Implantar no aplicativo Web](../images/CommandPaletteDeployAppService.png)
 
-1. A dialog will pop up asking if you want to overwrite the existing deployment. Select the **Deploy** button.
+1. Uma caixa de diálogo será exibida perguntando se você deseja substituir a implantação existente. Selecione o botão **Implantar**.
   
-   ![The overwrite existing deploy dialog](../images/OverwriteDeploy.png)
+   ![A caixa de diálogo Substituir implantação existente](../images/OverwriteDeploy.png)
 
-1. A popup will appear showing the deployment progress. You can monitor the progress from the *Output* window by selecting *View -> Output* and selecting *Azure App Service* from the window selector.
+1. Um pop-up mostrando o progresso da implantação será exibido. Você pode monitorar o progresso na janela *Saída* selecionando *Exibição > Saída* e selecionando *Serviço de Aplicativo do Azure* no seletor de janela.
   
-   ![The deploy progress dialog](../images/DeployProgress.png)
+   ![A caixa de diálogo Progresso da implantação](../images/DeployProgress.png)
 
-1. Open the web site in your browser and play the game.
+1. Abra o site em seu navegador e jogue o jogo.
 
-## Play the game
+## <a name="play-the-game"></a>Jogue o jogo
 
-Every time you load the page it will select a different emotion.
+Toda vez que você carregar a página, ela selecionará uma emoção diferente.
 
-1. Look at your camera and do your best to show the requested emotion.
+1. Examine sua câmera e faça o possível para mostrar a emoção solicitada.
 
-1. Click the **Capture emotion** button. An image will be captured and checked for your emotion.
+1. Clique no botão **Capturar emoção**. Uma imagem será capturada e verificada para identificação da sua emoção.
 
-1. You will either see a green check showing you successfully showed the given emotion, or a red cross if you didn't, along with the emotion the Face API thought you showed. If no faces are in the image you will see an error.
+1. Se você apresentou com êxito a emoção informada, verá uma marca de seleção verde; caso contrário, verá uma cruz vermelha acompanhada da emoção que API de Detecção Facial pensou que você mostrou. Se não houver rostos na imagem, você verá um erro.
 
-   ![The game results showing one game won, and one lost](../images/GameResults.png)
+   ![Os resultados do jogo mostrando um jogo ganho e um perdido](../images/GameResults.png)
 
-## What does this code do
+## <a name="what-does-this-code-do"></a>O que este código faz?
 
-### The `app.py` file
+### <a name="the-apppy-file"></a>O arquivo `app.py`
 
 ```python
 import random, os, io, base64
@@ -167,16 +167,16 @@ from azure.cognitiveservices.vision.face import FaceClient
 from msrest.authentication import CognitiveServicesCredentials
 ```
 
-This imports all the modules needed from the Python system packages and the packages installed as part of this app.
+Isso importa todos os módulos necessários dos pacotes de sistema do Python e os pacotes instalados como parte desse aplicativo.
 
 ```python
 credentials = CognitiveServicesCredentials(os.environ['face_api_key'])
 face_client = FaceClient(os.environ['face_api_endpoint'], credentials=credentials)
 ```
 
-This code creates a `FaceClient` - an object that can be used to access the Azure Face API. This needs to connect to a specific Face API resource, and this is configures using the endpoint from the resource that was created, and the API key via a `CognitiveServicesCredentials` object that wraps that key.
+Esse código cria um `FaceClient`: um objeto que pode ser usado para acessar a API de Detecção Facial do Azure. Isso precisa se conectar a um recurso de API de Detecção Facial específico e é configurado usando o ponto de extremidade do recurso que foi criado e a chave de API, por meio de um objeto `CognitiveServicesCredentials` que encapsula essa chave.
 
-The values for the endpoint and key are read from environment variables. When run locally these come from the `.env` file, when run in an Azure App Service they come from the application settings.
+Os valores para o ponto de extremidade e a chave são lidos de variáveis de ambiente. Quando executados localmente, eles são provenientes do arquivo `.env`, mas quando executados em um Serviço de Aplicativo do Azure, são provenientes das configurações do aplicativo.
 
 ```python
 def best_emotion(emotion):
@@ -192,27 +192,27 @@ def best_emotion(emotion):
   return max(zip(emotions.values(), emotions.keys()))[1]
 ```
 
-The emotion information is sent as a set of properties on the emotion with a value for how likely it is that that particular emotion is being shown on a scale of 0-1, 0 being not likely and 1 being very likely. We want to find the emotion with the highest likelihood, so this code declares a function to do this by putting these values into a dictionary of the name of the emotion to the likelihood. The code looks through the dictionary of emotions and detects the one with the highest likelihood, returning its name as the return value of the `best_emotion` function.
+As informações de emoção são enviadas como um conjunto de propriedades sobre a emoção com um valor para a probabilidade de que essa emoção específica esteja sendo mostrada em uma escala de 0 a 1, em que 0 representa pouca probabilidade e 1 representa uma probabilidade muito alta. Queremos encontrar a emoção que apresente a maior probabilidade, portanto, esse código declara uma função para fazer isso colocando esses valores como a probabilidade em um dicionário de nomes de emoção. O código examina o dicionário de emoções e detecta aquela com a maior probabilidade, retornando o nome dela como o valor retornado da função `best_emotion`.
 
 ```python
 @app.route('/result', methods=['POST'])
 def check_results():
 ```
 
-This declares a new function that is exposed as a REST endpoint. Making an HTTP POST request to `<website>/result` will execute this function. This REST endpoint will be called passing in a JSON document containing the emotion the player has to show, as well as their picture stored as a base64 encoded string.
+Isso declara uma nova função que é exposta como um ponto de extremidade REST. Fazer uma solicitação HTTP POST para `<website>/result` executará essa função. Esse ponto de extremidade REST será chamado ao passar um documento JSON contendo a emoção que o jogador precisa mostrar, bem como a imagem do jogador armazenada como uma cadeia de caracteres codificada em base64.
 
 ```python
 body = request.get_json()
 ```
 
-This gets the JSON that was passed to this REST endpoint when called.
+Esse procedimento resulta na obtenção do JSON que foi passado para esse ponto de extremidade REST quando chamado.
 
 ```python
 desired_emotion = body['emotion']
 image_bytes = base64.b64decode(body['image_base64'].split(',')[1])
 ```
 
-This code gets the value of the `emotion` and `image_base64` properties on the JSON. The JSON document this expects is in this format:
+Esse código obtém o valor das propriedades `emotion` e `image_base64` no JSON. O documento JSON esperado está neste formato:
 
 ```json
 {
@@ -221,20 +221,20 @@ This code gets the value of the `emotion` and `image_base64` properties on the J
 }
 ```
 
-The `image_base64` property is the image encoded as a data URL, which is a way to encode data inline in web pages. In the template file, the code that extracts the picture will generate data in this format. The format for an image is `data:image/png;base64,<base64 encoded data>`, with the `<base64 encoded data>` containing the image encoded as a base64 string. To get the image, this string needs to be split at the comma, and only the section after used. Once split, the base64 encoded data is decoded into binary data.
+A propriedade `image_base64` é a imagem codificada como uma URL de dados, que é uma forma de codificar dados embutidos em páginas da Web. No arquivo de modelo, o código que extrai a imagem vai gerar dados nesse formato. O formato de uma imagem é `data:image/png;base64,<base64 encoded data>`, com o `<base64 encoded data>` que contém a imagem codificado como uma cadeia de caracteres em base64. Para obter a imagem, essa cadeia de caracteres precisa ser dividida com a vírgula como separador e apenas a seção depois dela deve ser usada. Depois da divisão, os dados codificados em base64 são decodificados em dados binários.
 
 ```python
 image = io.BytesIO(image_bytes)
 ```
 
-This converts the binary image data into a stream.
+Isso converte os dados da imagem binária em um fluxo.
 
 ```python
 faces = face_client.face.detect_with_stream(image,
                                             return_face_attributes=['emotion'])
 ```
 
-This calls the Face API, passing in the image stream. This API can return a number of features for each face that is detected, and in this call we just want the emotion, indicated by the `return_face_attributes` parameter.
+Isso chama a API de Detecção Facial, passando o fluxo de imagem. Essa API pode retornar vários recursos para cada rosto detectado e, nesta chamada, queremos apenas a emoção, indicada pelo parâmetro `return_face_attributes`.
 
 ```python
 if len(faces) == 1:
@@ -245,7 +245,7 @@ return jsonify({
 })
 ```
 
-This checks how many faces were detected, returning an error if one wasn't found. This function returns data as JSON in the following format:
+Isso verifica quantos rostos foram detectados, retornando um erro se nenhum foi encontrado. Essa função retorna dados como JSON no seguinte formato:
 
 ```json
 {
@@ -253,13 +253,13 @@ This checks how many faces were detected, returning an error if one wasn't found
 }
 ```
 
-The value of `<message>` is set to whatever needs to be displayed to the player. In this case the message is an error that no faces were detected.
+O valor de `<message>` é definido como o que precisa ser exibido para o player. Nesse caso, a mensagem é um erro informando que nenhum rosto foi detectado.
 
 ```python
 detected_emotion = best_emotion(faces[0].face_attributes.emotion)
 ```
 
-This finds the emotion with the highest probability from the face that was detected.
+Esse procedimento descobre a emoção com a maior probabilidade no rosto que foi detectado.
 
 ```python
 if detected_emotion == desired_emotion:
@@ -275,15 +275,15 @@ else:
   })
 ```
 
-If the detected emotion is the one the player was asked to show, the returned JSON has a message that they won, otherwise the message says they failed.
+Se a emoção detectada for aquela que foi solicitada que o jogador mostrasse, o JSON retornado terá uma mensagem dizendo que o jogador ganhou; caso contrário, a mensagem indicará que o jogador perdeu.
 
-### The template file
+### <a name="the-template-file"></a>O arquivo de modelo
 
 ```js
 var message = document.getElementById('message');
 ```
 
-This locates the `h1` HTML element that will be used to show the message by its id.
+Isso localiza o elemento HTML `h1` que será usado para mostrar a mensagem pela respectiva ID.
 
 ```js
 document.getElementById('capture').addEventListener('click', () => {
@@ -291,7 +291,7 @@ document.getElementById('capture').addEventListener('click', () => {
 });
 ```
 
-This creates a listener for the `click` event of the `capture` button.
+Isso cria um ouvinte para o evento `click` do botão `capture`.
 
 ```js
 var canvas = document.createElement('canvas');
@@ -301,7 +301,7 @@ var context = canvas.getContext('2d');
 context.drawImage(video, 0, 0, canvas.width, canvas.height);
 ```
 
-This creates an HTML canvas sized at 640x480, and draws an image onto it from the video element, essentially capturing the output of the camera.
+Isso cria uma tela HTML dimensionada em 640x480 e desenha uma imagem para ela com base no elemento de vídeo, essencialmente capturando a saída da câmera.
 
 ```js
 var data = {
@@ -310,7 +310,7 @@ var data = {
 }
 ```
 
-This created the JSON document that will be passed to the `/result` route, containing the image extracted from the canvas as a data URL, and the emotion the player is trying to show.
+Isso criou o documento JSON que será passado para a rota `/result`, contendo a imagem extraída da tela como uma URL de dados e a emoção que o jogador está tentando mostrar.
 
 ```js
 const getResult = async () => {
@@ -325,14 +325,14 @@ const getResult = async () => {
 }
 ```
 
-This declares an async function called `getResult` that makes a POST REST request to the `/result` route, passing the JSON document. Once the call is made, the JSON in the result is extracted, and the `message` value in that JSON document is set as the text for the message HTML element, showing the result.
+Isso declara uma função Async chamada `getResult` que faz uma solicitação POST REST para a rota `/result`, passando o documento JSON. Depois que a chamada é feita, o JSON no resultado é extraído e o valor `message` nesse documento JSON é definido como o texto para o elemento HTML da mensagem, mostrando o resultado.
 
 ```js
 getResult()
 ```
 
-This calls the `getResult` function.
+Essa chama a função `getResult`.
 
-## Next step
+## <a name="next-step"></a>Próxima etapa
 
-In this step you built out the game to capture frames from the camera and look for emotions. In the [next step](./CleanUp.md) you will clean up your Azure resources.
+Nesta etapa, você criou o jogo para capturar quadros da câmera e procurar emoções. Na [próxima etapa](./CleanUp.md), você limpará os recursos do Azure.

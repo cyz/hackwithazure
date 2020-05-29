@@ -1,88 +1,88 @@
-# Create the Flask web app
+# <a name="create-the-flask-web-app"></a>Criar o aplicativo Web Flask
 
-In this step you will create a Flask web app.
+Nesta etapa, você criará um aplicativo Web Flask.
 
-## Create folders for the project
+## <a name="create-folders-for-the-project"></a>Criar pastas para o projeto
 
-1. Create a folder called `HappySadAngry` somewhere on your machine.
+1. Crie uma pasta chamada `HappySadAngry` em algum lugar em seu computador.
 
-## Open this folder in Visual Studio Code
+## <a name="open-this-folder-in-visual-studio-code"></a>Abrir esta pasta no Visual Studio Code
 
-1. Launch Visual Studio Code.
+1. Inicie o Visual Studio Code.
 
-1. Open the newly created folder
-   1. On MacOS select *File->Open...*
-   1. On Windows select *File->Open Folder...*
+1. Abrir a pasta recém-criada
+   1. No MacOS, selecione *Arquivo -> Abrir...*
+   1. No Windows, selecione *Arquivo-> Abrir Pasta...*
 
-1. Navigate to the new `HappySadAngry` folder and select **Open**.
+1. Navegue até a nova pasta `HappySadAngry` e selecione **Abrir**.
 
-You will see the empty folder appear in the *Explorer*.
+Você verá que a pasta vazia aparece no *Explorer*.
 
-## Configure a virtual environment
+## <a name="configure-a-virtual-environment"></a>Configurar um ambiente virtual
 
-Python comes in various versions, and Python apps can use external code in packages installed via a tool called `pip`. This can lead to problems if different apps need different package versions, or different Python versions. To make it easier to avoid issues with package or Python versions, it is best practice to use *virtual environments*, self-contained folder trees that contain a Python installation for a particular version of Python, plus a number of additional packages.
+O Python é fornecido em várias versões, e aplicativos Python podem usar código externo em pacotes instalados por meio de uma ferramenta chamada `pip`. Isso poderá levar a problemas se aplicativos diferentes precisarem de versões de pacotes ou versões do Python diferentes. Para facilitar a prevenção de problemas com as versões do pacote ou do Python, a melhor prática é usar *ambientes virtuais*, árvores de pastas independentes que contêm uma instalação do Python para uma versão específica do Python, além de vários pacotes adicionais.
 
-1. Create a new file inside the `HappySadAngry` folder called `app.py`. This is the file that will contain the code for the Flask app, and by creating it the Python extension in Visual Studio Code will be activated. Select the **New File** button in the *Explorer*.
+1. Crie um arquivo dentro da pasta `HappySadAngry` chamado `app.py`. Esse é o arquivo que conterá o código para o aplicativo Flask e, ao criá-lo, a extensão do Python no Visual Studio Code será ativada. Selecione o botão **Novo Arquivo** no *Explorer*.
 
-   ![The new file button](../images/VSCodeNewFile.png)
+   ![O botão do novo arquivo](../images/VSCodeNewFile.png)
 
-1. Name the new file `app.py` and press return
+1. Nomeie o novo arquivo `app.py` e pressione retornar
 
-   ![Naming the file app.py](../images/NameAppPy.png)
+   ![Como nomear o arquivo app.py](../images/NameAppPy.png)
 
-   > You may be prompted to install a Linter. This is a tool that can inspect your code for error as you write it. If a popup appears asking if you want to install this, select **Install**.
+   > Talvez seja solicitado que você instale um Linter. Essa é uma ferramenta que pode inspecionar o código quanto a erros enquanto você o escreve. Se um pop-up for exibido perguntando se você deseja instalá-lo, selecione **Instalar**.
 
-1. When Visual Studio Code was opened, the terminal should be opened by default. If not, open a new terminal by selecting *Terminal -> New Terminal*.
+1. Quando o Visual Studio Code foi aberto, o terminal deve ser aberto por padrão. Caso contrário, abra um novo terminal selecionando *Terminal -> Novo Terminal*.
 
-1. Create a new virtual environment called `.venv` using Python 3 by running the following command in the terminal
+1. Crie um ambiente virtual chamado `.venv` usando o Python 3 e executando o comando a seguir no terminal
 
    ```sh
    python3 -m venv .venv
    ```
 
-1. A dialog will pop up asking if you want to activate this virtual environment. Select **Yes**.
+1. Uma caixa de diálogo será exibida perguntando se você deseja ativar esse ambiente virtual. Selecione **Sim**.
 
-   ![The virtual environment dialog](../images/LaunchVirtualEnv.png)
+   ![A caixa de diálogo do ambiente virtual](../images/LaunchVirtualEnv.png)
 
-1. The existing terminal will not have the virtual environment activated. Close it by selecting the trash can button
+1. O terminal existente não terá o ambiente virtual ativado. Feche-a selecionando o botão de lixeira
 
-   ![The kill terminal button](../images/KillTerminal.png)
+   ![O botão encerrar terminal](../images/KillTerminal.png)
 
-1. Create a new terminal by selecting *Terminal -> New Terminal*. The terminal will load the virtual environment
+1. Crie um terminal selecionando *Terminal -> Novo Terminal*. O terminal carregará o ambiente virtual
 
-   ![The terminal activating the virtual environment](../images/TerminalWithActivatedEnvironment.png)
+   ![O terminal ativando o ambiente virtual](../images/TerminalWithActivatedEnvironment.png)
 
-## Install the Flask package
+## <a name="install-the-flask-package"></a>Instalar o pacote Flask
 
-[Flask](http://flask.pocoo.org) is a Python micro-framework for creating Web Apps. It is lightweight and easy to use to create simple Web Apps. It is available as a Python package that can be installed with `pip`.
+[Flask](http://flask.pocoo.org) é uma microestrutura Python para criar aplicativos Web. É leve e fácil de usar para criar aplicativos Web simples. Ele está disponível como um pacote do Python que pode ser instalado com `pip`.
 
-Instead of installing it using `pip` from the terminal, it should be configured inside a `requirements.txt` file. This file lists all the packages that a Python app depends on, and will be needed once the Web App is deployed to the cloud in a later step. This file will tell whatever server in the cloud that the web site is running on that packages that have to be installed before the Web App can be started.
+Em vez de instalá-lo usando `pip` do terminal, ele deve ser configurado dentro de um arquivo `requirements.txt`. Esse arquivo lista todos os pacotes dos quais um aplicativo Python depende e será necessário quando o aplicativo Web for implantado na nuvem em uma etapa posterior. Esse arquivo informará qualquer servidor na nuvem que o site Web está em execução nos pacotes que precisam ser instalados antes que o aplicativo Web seja iniciado.
 
-1. Create a new file in the folder called `requirements.txt`
+1. Criar um arquivo na pasta chamado `requirements.txt`
 
-1. Add the following package to the file:
+1. Adicione o seguinte pacote ao arquivo:
   
    ```python
    flask
    ```
 
-1. Save the file
+1. Salvar o arquivo
 
-   > If you don't want to have to remember to always save files, you can turn on Auto Save by selecting *File -> Auto Save*.
+   > Se você não quiser ter que se lembrar de sempre salvar arquivos, poderá ativar o salvamento automático selecionando *Arquivo -> Salvamento Automático*.
 
-1. Install the packages from the terminal using the following command:
+1. Instale os pacotes por meio do terminal usando o seguinte comando:
   
    ```sh
    pip install -r requirements.txt
    ```
 
-   This will install all packages in the `requirements.txt` file, skipping any that are already installed.
+   Isso instalará todos os pacotes no arquivo `requirements.txt`, ignorando os que já estão instalados.
 
-## Write the code
+## <a name="write-the-code"></a>Escrever o código
 
-1. Open the `app.py` file
+1. Abrir o arquivo `app.py`
 
-1. Add the following code to this file:
+1. Adicione o seguinte código a este arquivo:
   
     ```python
     from flask import Flask
@@ -94,67 +94,67 @@ Instead of installing it using `pip` from the terminal, it should be configured 
       return 'Hello World'
     ```
 
-1. Save the file
+1. Salvar o arquivo
 
-## Run the code
+## <a name="run-the-code"></a>Executar o código
 
-This code can't be run from the terminal using the `Python` command, instead it has to be run as a Flask app using the Flask package. There are two ways to do this:
+Esse código não pode ser executado do terminal usando o comando `Python`. Em vez disso, ele deve ser executado como um aplicativo Flask usando o pacote Flask. Existem duas maneiras de fazer isso:
 
-1. From the Debug pane of the toolbar, drop down the *Debug configuration* box and select *Python: Flask*.
+1. No painel Depurar da barra de ferramentas, solte a caixa *Depurar configuração* e selecione *Python: Flask*.
   
-   > If you do not see this option, then select *Add configuration* to edit the `launch.json` file. This should create a set of launch options for Python files.
+   > Se você não vir essa opção, selecione *Adicionar configuração* para editar o arquivo `launch.json`. Isso deve criar um conjunto de opções de inicialização para arquivos Python.
    >
-   > If these options are not created automatically, select *Add Configuration...* and select the *Flask* option. Save this file.
+   > Se essas opções não forem criadas automaticamente, selecione *Adicionar Configuração...* e selecione a opção *Flask*. Salve esse arquivo.
    >
-   > Select *Python: Flask* from the *Debug configuration* box.
+   > Selecione *Python: Flask* na caixa *Depurar configuração*.
 
-   Select the green *Start Debugging* button.
+   Selecione o botão verde *Iniciar Depuração*.
 
-   If you use this method you will be able to set breakpoints and debug your code.
+   Se usar esse método, você será capaz de definir pontos de interrupção e depurar seu código.
 
-1. From the terminal, run the file as a Flask app using:
+1. No terminal, execute o arquivo como um aplicativo do Flask usando:
   
    ```sh
    flask run
    ```
 
-   If you use this method you will not be able to set breakpoints and debug your code.
+   Se usar esse método, você não será capaz de definir pontos de interrupção e depurar seu código.
 
-The Web App will be run, and can be accessed from your device at [http://127.0.0.1:5000](http://127.0.0.1:5000). You will see this URL in the output window, and you can use **ctrl+click** to go directly to this site.
+O aplicativo Web será executado e poderá ser acessado em seu dispositivo em [http://127.0.0.1:5000](http://127.0.0.1:5000). Você verá essa URL na janela de saída e poderá usar **Ctrl + clique** para ir diretamente ao site em questão.
 
-1. Open this URL in a web browser to see the `Hello World` message.
+1. Abra essa URL em um navegador da Web para ver a mensagem `Hello World`.
 
-   ![A website showing Hello World](../images/HelloWorldOnWebSite.png)
+   ![Um site mostrando Olá, Mundo](../images/HelloWorldOnWebSite.png)
 
-1. Stop the debugger once you have tested this out.
+1. Pare o depurador depois de testar isso.
 
-## What does this code do
+## <a name="what-does-this-code-do"></a>O que este código faz?
 
 ```python
 from flask import Flask
 ```
 
-This tells the Python compiler that we want to use code in the `Flask` module. This module was installed as part of the `flask` package.
+Isso informa ao compilador do Python que desejamos usar o código no módulo `Flask`. Esse módulo foi instalado como parte do pacote do `flask`.
 
 ```python
 app = Flask(__name__)
 ```
 
-This creates a Flask Web App called whatever the file is called. `__name__` is a special variable in Python that returns the name of the current module - so the file without the `.py` extension.
+Isso cria um aplicativo Web Flask chamado como qualquer que seja o nome do arquivo. `__name__` é uma variável especial no Python que retorna o nome do módulo atual. Portanto, o arquivo sem a extensão `.py`.
 
 ```python
 @app.route('/')
 def home():
 ```
 
-This defines a function called `home`. This function is mapped to a route called `/`. In a Web App, a route is the part of the URL after the domain name, and different routes can be mapped to different web pages. `/` is usually the home page, and there can be as many other routes as needed, for example `/about` would route to an about page, `/basket` could route to a shopping basket. If your website was at `http://www.mywebsite.com` then the `/` route is the one that would be used when you point your browser to `http://www.mywebsite.com`, `/about` would be used when you went to `http://www.mywebsite.com/about` and so on.
+Isso define uma função chamada `home`. Essa função é mapeada para uma rota chamada `/`. Em um aplicativo Web, uma rota é a parte da URL após o nome de domínio, e rotas diferentes podem ser mapeadas para páginas da Web diferentes. `/` geralmente é a home page, e pode haver tantas outras rotas quantas forem necessárias, por exemplo, `/about` poderia rotear para uma página Sobre, `/basket` poderia rotear para uma cesta de compras. Se o seu site estava em `http://www.mywebsite.com`, a rota `/` é aquela que seria usada quando você aponta seu navegador para `http://www.mywebsite.com`, `/about` seria usado quando você passou para `http://www.mywebsite.com/about` e assim por diante.
 
 ```python
 return 'Hello World'
 ```
 
-The contents of the `home` function just returns simple text, and this will be rendered by a web browser as raw text.
+O conteúdo da função `home` apenas retorna texto simples, e isso será renderizado por um navegador da Web como texto bruto.
 
-## Next step
+## <a name="next-step"></a>Próxima etapa
 
-In this step you created a simple Flask Web App that showed 'Hello World' when run. In the [next step](./CreateTheWebPage.md), you will create the web page for the game that shows the emotion you are trying to show, and captures images from the camera.
+Nesta etapa, você criou um aplicativo Web Flask simples que mostrou 'Olá, Mundo' ao ser executado. Na [próxima etapa](./CreateTheWebPage.md), você criará a página da Web para o jogo que mostra a emoção que você está tentando transmitir e captura imagens da câmera.

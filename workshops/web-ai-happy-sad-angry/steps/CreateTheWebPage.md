@@ -1,28 +1,28 @@
-# Create a web page for the game
+# <a name="create-a-web-page-for-the-game"></a>Criar uma página da Web para o jogo
 
-In the [previous step](./CreateAFlaskWebApp.md), you created a simple Flask Web App that showed 'Hello World' when run. In this step, you will create the web page for the game that shows the emotion you are trying to show, and captures images from the camera.
+Na [etapa anterior](./CreateAFlaskWebApp.md), você criou um aplicativo Web Flask simples que mostrou 'Olá, Mundo' ao ser executado. Nesta etapa, você criará a página da Web para o jogo que mostra a emoção que você está tentando transmitir e captura imagens da câmera.
 
-## Rendering HTML
+## <a name="rendering-html"></a>Renderização de HTML
 
-To show a web page for the game, the Flask app needs to show some HTML. This HTML needs to be configurable to include a randomly selected emotion.
+Para mostrar uma página da Web para o jogo, o aplicativo Flask precisa apresentar algum HTML. Esse HTML precisa ser configurável para incluir uma emoção selecionada aleatoriamente.
 
-There are two ways to return an HTML page from a Flask app. You can return text or raw HTML, or you can use templates. Templates allow you to define some HTML that can show data in some way, and use that template with data to build an HTML page. For example if you wanted to show page with a list of names you could specify a template that iterated the list and returned list items, then use that template with some actual data to create the list in HTML.
+Há duas maneiras de retornar uma página HTML de um aplicativo Flask. Você pode retornar texto ou HTML bruto, ou pode usar modelos. Os modelos permitem que você defina trechos HTML capazes de mostrar dados de alguma forma e que use esse modelo com dados para criar uma página HTML. Por exemplo, se quisesse mostrar uma página com uma lista de nomes, você poderia especificar um modelo que iterou a lista e retornou itens de lista, então usar esse modelo com alguns dados reais para criar a lista em HTML.
 
-Converting a template and data to HTML is called *Rendering*.
+A conversão de um modelo e de dados em HTML é chamada de *Renderização*.
 
-## Create the template
+## <a name="create-the-template"></a>Criar o modelo
 
-Templates live in a folder called `templates`.
+Os modelos residem em uma pasta chamada `templates`.
 
-1. Create a new folder in Visual Studio Code inside your app folder. To do this, select the *New folder* button from the *Explorer* tab.
+1. Crie uma pasta no Visual Studio Code, dentro da sua pasta de aplicativos. Para fazer isso, selecione o botão *Nova pasta* na guia *Explorador*.
   
-   ![The New Folder button](../images/VSCodeNewFolder.png)
+   ![O botão Nova pasta](../images/VSCodeNewFolder.png)
 
-1. Name this folder `templates`.
+1. Dê a esta pasta o nome `templates`.
 
-1. Create a new file in this folder called `home.html`
+1. Criar um arquivo nesta pasta chamado `home.html`
 
-1. Add the following code to this file:
+1. Adicione o seguinte código a este arquivo:
 
    ```html
    <!DOCTYPE html>
@@ -54,26 +54,26 @@ Templates live in a folder called `templates`.
    </html>
    ```
 
-1. Save the file
+1. Salvar o arquivo
 
-1. Open `app.py`
+1. Abrir `app.py`
 
-1. At the start of the file import the `render_template` member from the flask module by adding it to the existing import statement. In addition, add an import for the `random` module.
+1. No início do arquivo, importe o membro de `render_template` do módulo do Flask adicionando-o à instrução de importação existente. Além disso, adicione uma importação para o módulo `random`.
   
    ```python
    import random
    from flask import Flask, render_template
    ```
 
-1. Add a list of possible emotions for the player to show below the import statements.
+1. Adicione uma lista de emoções possíveis para o player mostrar abaixo das instruções de importação.
 
    ```python
    emotions = ['anger','contempt','disgust','fear','happiness','sadness','surprise']
    ```
 
-   This list of emotions is based off the emotions that can be detected by the Azure Cognitive Services Face API.
+   Essa lista de emoções baseia-se nas emoções que podem ser detectadas pela API de Detecção Facial dos Serviços Cognitivos do Azure.
 
-1. Replace the `home` function with the following code:
+1. Substitua a função `home` pelo seguinte código:
   
    ```python
    @app.route('/')
@@ -84,35 +84,35 @@ Templates live in a folder called `templates`.
      return render_template('home.html', page_data = page_data)
    ```
 
-1. Save the file.
+1. Salve o arquivo.
 
-## Run the code
+## <a name="run-the-code"></a>Executar o código
 
-There are two ways to run this code:
+Há duas formas de executar esse código:
 
-1. From the Debug pane of the toolbar, select the green *Start Debugging* button.
+1. No painel Depurar da barra de ferramentas, selecione o botão verde *Iniciar depuração*.
 
-   If you use this method you will be able to set breakpoints and debug your code.
+   Se usar esse método, você será capaz de definir pontos de interrupção e depurar seu código.
 
-1. From the terminal, run the file as a Flask app using:
+1. No terminal, execute o arquivo como um aplicativo do Flask usando:
   
    ```sh
    flask run
    ```
 
-  If you use this method you will not be able to set breakpoints and debug your code.
+  Se usar esse método, você não será capaz de definir pontos de interrupção e depurar seu código.
 
-The Web App will be run, and can be accessed from your device at [http://127.0.0.1:5000](http://127.0.0.1:5000). You will see this URL in the output window, and you can use **ctrl+click** to go directly to this site.
+O aplicativo Web será executado e poderá ser acessado em seu dispositivo em [http://127.0.0.1:5000](http://127.0.0.1:5000). Você verá essa URL na janela de saída e poderá usar **Ctrl + clique** para ir diretamente ao site em questão.
 
-1. Open this URL in a web browser to see the game web page. You may be asked for permission for the page to access the camera. If this happens you many want to always allow this to save being asked every time. One the page you will see a random emotion being asked for, and a live feed from your camera.
+1. Abra essa URL em um navegador da Web para ver a página da Web do jogo. Pode ser solicitado que você forneça permissão para a página acessar a câmera. Se isso acontecer, recomendamos fortemente que permita sempre para evitar que essa pergunta se repita todas as vezes. Na página, você verá uma emoção aleatória sendo solicitada e um feed ao vivo da câmera.
 
-   ![The game page asking for an emption and showing a feed from the camera](../images/GameWebPageRunningLocally.png)
+   ![A página do jogo solicitando uma emoção e mostrando um feed da câmera](../images/GameWebPageRunningLocally.png)
 
-1. Stop the debugger once you have tested this out.
+1. Pare o depurador depois de testar isso.
 
-## What does this code do
+## <a name="what-does-this-code-do"></a>O que este código faz?
 
-### The template file
+### <a name="the-template-file"></a>O arquivo de modelo
 
 ```html
 <!DOCTYPE html>
@@ -126,13 +126,13 @@ The Web App will be run, and can be accessed from your device at [http://127.0.0
 </html>
 ```
 
-This is a standard HTML file with a body and a title of 'Happy, Sad, Angry', the name of this game.
+Esse é um arquivo HTML padrão com um corpo e o título "Feliz, triste, irritado", o nome deste jogo.
 
 ```html
 <h1>Give me your best {{ page_data.emotion }} face</h1>
 ```
 
-This code puts a header on the screen to show the emotion that the player has to show. The `{{ page_data.emotion }}` part indicates that this is a value that will be rendered using data passed in to the Flask renderer. It will look for a property passed in called `page_data`, and on that find a field called `emotion`, and insert that value into the header. For example if the value of `page_data.emotion` was `"angry"`, the header would show `Give me your best angry face`.
+Esse código coloca um cabeçalho na tela para mostrar a emoção que o jogador precisa transmitir. A parte `{{ page_data.emotion }}` indica que se trata de um valor que será processado usando dados passados para o renderizador do Flask. Ele vai procurar uma propriedade passada chamada `page_data` e, nela, encontrará um campo chamado `emotion` e inserirá esse valor no cabeçalho. Por exemplo, se o valor de `page_data.emotion` for `"angry"`, o cabeçalho mostrará `Give me your best angry face`.
 
 ```html
 <video id="video" autoplay></video>
@@ -141,7 +141,7 @@ This code puts a header on the screen to show the emotion that the player has to
 <h1 id="message"></h1>
 ```
 
-This defines some standard HTML elements, namely a video player, a button and another header that will show the result. These elements are named by setting their `id` property so that they can be accessed in code in a later step.
+Isso define alguns elementos HTML padrão, ou seja, um player de vídeo, um botão e outro cabeçalho que mostrará o resultado. Esses elementos são designados definindo sua propriedade `id` para que possam ser acessados no código em uma etapa posterior.
 
 ```html
 <script type="text/javascript">
@@ -149,7 +149,7 @@ This defines some standard HTML elements, namely a video player, a button and an
 </script>
 ```
 
-This defines a block of JavaScript code inside the HTML.
+Isso define um bloco de código JavaScript dentro do HTML.
 
 ```js
 window.addEventListener("DOMContentLoaded", function() {
@@ -157,13 +157,13 @@ window.addEventListener("DOMContentLoaded", function() {
 })
 ```
 
-This defines an event that is executed when the page is fully loaded in the browser.
+Isso define um evento que é executado quando a página é totalmente carregada no navegador.
 
 ```js
 var video = document.getElementById('video');
 ```
 
-This code will get the video player from the HTML based off its `id` of `video`, and assign it to a variable.
+Esse código obterá o player de vídeo do HTML com base em `id` de `video` e o atribuirá a uma variável.
 
 ```js
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -175,22 +175,22 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 }
 ```
 
-This code will use the JavaScript media devices APIs to access the local camera from the browser if one exists. It will set the source of the video element to be the camera and start it playing. This will show a continuous stream of video from the camera on the page.
+Esse código usará as APIs de dispositivos de mídia do JavaScript para acessar a câmera local do navegador, se houver. Isso definirá a origem do elemento de vídeo como a câmera e a iniciará. Isso mostrará um fluxo contínuo de vídeo da câmera na página.
 
-### The `app.py` file
+### <a name="the-apppy-file"></a>O arquivo `app.py`
 
 ```python
 import random
 from flask import Flask, render_template
 ```
 
-This tells the Python compiler that we want to use code in the `render_template` module that was installed as part of the `flask` package, as well as the `random` module that comes as part of Python.
+Isso informa ao compilador do Python que desejamos usar o código no módulo `render_template` que foi instalado como parte do pacote de `flask`, bem como o módulo `random` que vem como parte do Python.
 
 ```python
 emotions = ['anger','contempt','disgust','fear','happiness','sadness','surprise']
 ```
 
-This defines a list of the possible emotions that the game will ask you to show.
+Isso define uma lista das possíveis emoções que o jogo solicitará que você apresente.
 
 ```python
 page_data = {
@@ -198,14 +198,14 @@ page_data = {
 }
 ```
 
-This defines a dictionary of values to be passed to the HTML template.
+Isso define um dicionário de valores a serem passados ao modelo HTML.
 
 ```python
 return render_template('home.html', page_data = page_data)
 ```
 
-This will render the HTML from the `home.html` template file, passing the `page_data` dictionary in as a parameter called `page_data`. The tokens in the HTML template that refer to `page_data` will refer to values passed in in this field.
+Isso renderizará o HTML do arquivo de modelo `home.html`, passando o dicionário `page_data` como um parâmetro chamado `page_data`. Os tokens do modelo HTML que se referem a `page_data` vão se referir aos valores passados nesse campo.
 
-## Next step
+## <a name="next-step"></a>Próxima etapa
 
-In this step you created the web page for the game that shows the emotion you are trying to show, and captures images from the camera. In the [next step](./DeployTheWebAppToTheCloud.md), you will deploy this Web App to the cloud using Azure App Service.
+Nesta etapa, você criou a página da Web para o jogo que mostra a emoção que você está tentando transmitir e captura imagens da câmera. Na [próxima etapa](./DeployTheWebAppToTheCloud.md), você implantará esse aplicativo Web na nuvem usando o Serviço de Aplicativo do Azure.

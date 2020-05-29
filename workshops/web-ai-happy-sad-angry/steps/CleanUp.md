@@ -1,27 +1,27 @@
-# Clean up
+# <a name="clean-up"></a>Limpar
 
-In the [previous step](./CheckTheEmotion.md) you built out the game to capture frames from the camera and look for emotions. In this step you will clean up your Azure resources.
+Nesta [etapa anterior](./CheckTheEmotion.md), você criou o jogo para capturar quadros da câmera e procurar emoções. Nesta etapa, você limpará os recursos do Azure.
 
-## Deleting the resource group
+## <a name="deleting-the-resource-group"></a>Excluindo o grupo de recursos
 
-Everything you created for this workshop should have been in the same resource group. This resource group was created when you first deployed the Azure App Service, and was used when you created the Face API.
+Tudo o que você criou para este workshop deve estar no mesmo grupo de recursos. Esse grupo de recursos foi criado quando você implantou o Serviço de Aplicativo do Azure pela primeira vez e foi usado quando você criou a API de Detecção Facial.
 
-Deleting this resource group will delete all the resources created.
+Excluir esse grupo de recursos excluirá todos os recursos criados.
 
-1. Open the Azure Portal from [portal.azure.com](https://portal.azure.com/?WT.mc_id=hackwithazure-hackathon-cxa). Log in if required.
+1. Abra o portal do Azure em [portal.azure.com](https://portal.azure.com/?WT.mc_id=hackwithazure-hackathon-cxa). Faça logon se necessário.
 
-1. From the search bar at the top, search for the resource group that was created. Select it from the results.
+1. Na barra de pesquisa na parte superior, pesquise pelo grupo de recursos que foi criado. Selecione-o nos resultados.
   
-   ![Searching for the resource group in Azure](../images/SearchForResourceGroup.png)
+   ![Pesquisando pelo grupo de recursos no Azure](../images/SearchForResourceGroup.png)
 
-1. Select **Delete resource group**.
+1. Selecione **Excluir grupo de recursos**.
   
-   ![The delete resource group button](../images/DeleteResourceGroupButton.png)
+   ![Botão excluir grupo de recursos](../images/DeleteResourceGroupButton.png)
 
-1. The confirmation panel will appear showing all the resources that will be deleted along with the resource group.
+1. O painel de confirmação será exibido, mostrando todos os recursos que serão excluídos com o grupo de recursos.
 
-   ![The delete resource group confirmation](../images/DeleteResourceGroupConfirm.png)
+   ![A confirmação de exclusão do grupo de recursos](../images/DeleteResourceGroupConfirm.png)
 
-1. Enter the name of the resource group and select *Delete*.
+1. Insira o nome do grupo de recursos e selecione *Excluir*.
 
-All the resources in this group will be deleted.
+Todos os recursos no grupo serão excluídos.
