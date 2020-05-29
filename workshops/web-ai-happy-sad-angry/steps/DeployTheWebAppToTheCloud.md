@@ -1,80 +1,80 @@
-# <a name="deploy-the-web-app-to-the-cloud-using-azure-app-service"></a>Implantar o aplicativo Web na nuvem usando o Serviço de Aplicativo do Azure
+# <a name="deploy-the-web-app-to-the-cloud-using-azure-app-service"></a>Implementación de la aplicación web en la nube con Azure App Service
 
-Na [etapa anterior](./CreateTheWebPage.md), você criou a página da Web para o jogo que mostra a emoção que você está tentando transmitir e captura imagens da câmera. Nesta etapa, você implantará esse aplicativo Web na nuvem usando o Serviço de Aplicativo do Azure.
+En el [paso anterior](./CreateTheWebPage.md) se creó la página web del juego, donde se reflejará la emoción que está tratando de transmitir y se capturarán imágenes de la cámara. En este paso, implementará esta aplicación web en la nube mediante Azure App Service.
 
-## <a name="running-web-apps-in-the-cloud"></a>Como executar aplicativos Web na nuvem
+## <a name="running-web-apps-in-the-cloud"></a>Ejecución de aplicaciones web en la nube
 
-Na última etapa, você executou o aplicativo Web no computador local. Isso significa que você pode ver a página da Web, mas ela não está disponível para outras pessoas. Para disponibilizá-la, ela precisa ser executada em um computador em algum lugar que esteja acessível pela Internet. Os serviços de nuvem permitem que você implante facilmente seus sites da Web em computadores em execução na nuvem. O serviço de nuvem disponível da Microsoft é chamado [Azure](https://azure.microsoft.com/?WT.mc_id=hackwithazure-hackathon-cxa).
+En el último paso, ejecutó la aplicación web en el equipo local. Después de esto, podrá ver la página web, pero esta no estará disponible para nadie más. Para que lo esté, debe ejecutarla en un equipo al que se pueda acceder a través de Internet. Los servicios en la nube permiten implementar fácilmente los sitios web en los equipos que se ejecutan en la nube. El servicio en la nube disponible en Microsoft se denomina [Azure](https://azure.microsoft.com/?WT.mc_id=hackwithazure-hackathon-cxa).
 
-A execução de sites da Web costumava ser muito trabalhosa. Você precisaria configurar um computador conectado à Internet, instalar o software para hospedar o site, conectá-lo à Internet com um nome de domínio, configurar a segurança para que os hackers não conseguissem invadir e garantir que tudo fosse armazenado em backup no caso de alguma interrupção. Para sites ocupados, talvez você queira configurar vários computadores para distribuir a carga e serviços para garantir que um computador não fique sobrecarregado com solicitações de tratamento. Agora, graças aos serviços na nuvem, você pode simplesmente implantar seu código e deixar que o provedor de nuvem faça tudo funcionar.
+La ejecución de sitios web solía suponer mucho trabajo. Sería necesario configurar un equipo conectado a Internet, instalar software para hospedar el sitio web, conectarlo a Internet con un nombre de dominio, configurar la seguridad para evitar el acceso de los hackers y asegurarse de que se realiza una copia de seguridad de todo por si se produce alguna interrupción. En los sitios con mucho tráfico, es posible que desee configurar varios equipos para distribuir la carga, además de servicios para garantizar que un equipo no se sobrecargue debido a la administración de solicitudes. Ahora, gracias a los servicios en la nube, puede implementar el código simplemente y dejar que el proveedor de servicios en la nube haga todo lo demás.
 
-Usando sua assinatura do Azure, você poderá implantar seu código na nuvem, com o Azure gerenciando todas as complexidades para você usando o [Serviço de Aplicativo do Azure](https://azure.microsoft.com/services/app-service/?WT.mc_id=hackwithazure-hackathon-cxa). Você configura um Serviço de Aplicativo e envia seu código para ele, e o Azure lida com o resto.
+Con la suscripción a Azure, podrá implementar el código en la nube, y Azure se encargará de abordar todas las complejidades derivadas del uso de [Azure App Service](https://azure.microsoft.com/services/app-service/?WT.mc_id=hackwithazure-hackathon-cxa). Debe configurar una instancia de App Service y enviarle el código, y Azure se encargará del resto.
 
-## <a name="deploying-to-an-app-service"></a>Implantação em um Serviço de Aplicativo
+## <a name="deploying-to-an-app-service"></a>Implementación en una instancia de App Service
 
-Você pode configurar um Serviço de Aplicativo do Azure e implantar seu código de dentro do Visual Studio Code.
+Puede configurar una instancia de Azure App Service e implementar el código desde dentro de Visual Studio Code.
 
-1. Abra a paleta de comandos:
-  1. No Windows, pressione Ctrl + Shift + P
-  1. No MacOS, pressione Cmd + Shift + P
+1. Abra la paleta de comandos:
+  1. En Windows, presione Ctrl+Mayús+P.
+  1. En MacOS, presione Cmd+Mayús+P.
 
-1. Selecione *Serviço de Aplicativo do Azure: Implantar no aplicativo Web...*
+1. Seleccione *Azure App Service: Implementar en aplicación web...*
   
-   ![A paleta de comandos mostrando a opção do Serviço de Aplicativo do Azure: Opção Implantar no aplicativo Web](../images/CommandPaletteDeployAppService.png)
+   ![Paleta de comandos que muestra la opción Azure App Service: Implementar en aplicación web](../images/CommandPaletteDeployAppService.png)
 
-1. Você deverá informar o código que deseja implantar. Essa opção selecionará automaticamente a pasta com seu código. Portanto, selecione-a.
+1. Se le preguntará qué código desea implementar. Esta opción seleccionará automáticamente la carpeta que contiene el código, por lo que debe seleccionarla.
 
-   ![A paleta de comandos mostrando a opção Origem da Implantação](../images/SelectDeployFolder.png)
+   ![Paleta de comandos que muestra la opción Origen de implementación](../images/SelectDeployFolder.png)
 
-1. Se você nunca tiver entrado no Azure do Visual Studio Code, será solicitado a entrar.
-   1. Selecione *Entrar no Azure...*
-   1. Seu navegador será iniciado, e você poderá entrar com sua conta do Azure.
-   1. Depois de entrar usando o navegador, você poderá fechar a página da Web que foi iniciada.
+1. Si nunca ha iniciado sesión en Azure desde Visual Studio Code, se le pedirá que lo haga.
+   1. Seleccione *Inicie sesión en Azure...*
+   1. Se abre el explorador para que pueda iniciar sesión con la cuenta de Azure.
+   1. Una vez iniciada la sesión desde el explorador, puede cerrar la página web que se abrió.
 
-1. Selecione a assinatura do Azure que deseja usar.
+1. Seleccione la suscripción de Azure que quiere usar.
   
-   ![A paleta de comandos mostrando a opção Selecionar Assinatura](../images/SelectDeploySubscription.png)
+   ![Paleta de comandos que muestra la opción Seleccionar suscripción](../images/SelectDeploySubscription.png)
 
-1. Selecione *+ Criar Novo Aplicativo Web*
+1. Seleccione *+ Crear aplicación web*.
 
-   Há duas opções para *Criar Aplicativo Web*; uma está marcada como *Avançado*. Você quer a opção normal, **não** a opção *Avançado*.
+   Hay dos opciones *Crear aplicación web*, una de ellas marcada como *Avanzada*. Desea utilizar la normal, **no** la *Avanzada*.
 
-   ![A paleta de comandos mostrando a opção Criar Aplicativo Web](../images/CreateNewWebApp.png)
+   ![Paleta de comandos que muestra la opción Crear aplicación web](../images/CreateNewWebApp.png)
 
-1. Dê um nome para o aplicativo Web. Isso fará parte do endereço do site da Web público; portanto, precisa ser exclusivo em todo o mundo. Por exemplo, eu poderia usar `jimspythonwebapp2019`.
+1. Asigne un nombre a la aplicación web. Este formará parte de la dirección del sitio web público, por lo que debe ser único en todo el mundo. Por ejemplo, podría usar `jimspythonwebapp2019`.
 
-   ![A paleta de comandos mostrando a opção Nome do Aplicativo Web](../images/SelectWebAppName.png)
+   ![Paleta de comandos que muestra la opción Nuevo nombre de aplicación web](../images/SelectWebAppName.png)
 
-1. Selecione o runtime para seu aplicativo do Serviço de Aplicativo. Este é um aplicativo Python; portanto, selecione a versão mais recente do runtime do Python, como *Python 3.7*
+1. Seleccione el tiempo de ejecución de la aplicación de App Service. Se trata de una aplicación de Python, por lo que debe seleccionar la última versión de Python en tiempo de ejecución, como *Python 3.7*.
 
-   ![A paleta de comandos mostrando a opção Selecionar Runtime](../images/SelectPythonRuntime.png)
+   ![Paleta de comandos que muestra la opción Seleccionar tiempo de ejecución](../images/SelectPythonRuntime.png)
 
-1. O Serviço de Aplicativo começará a ser criado. Você verá uma barra de progresso na parte inferior direita, que mostrará quando ela for concluída. Você pode monitorar o progresso na janela *Saída* selecionando *Exibição > Saída* e selecionando *Serviço de Aplicativo do Azure* no seletor de janela.
+1. Se empezará a crear la aplicación de App Service. Verá una barra de progreso en la parte inferior derecha, que le indicará cuándo se ha completado el proceso. Puede supervisar el progreso en la ventana *Salida*; para ello, seleccione *Ver -> Salida* y, después, *Azure App Service* en el selector de ventanas.
 
-   ![A barra de progresso Criar Serviço de Aplicativo](../images/CreateWebAppProgress.png)
+   ![Barra de progreso de Crear servicio de aplicaciones](../images/CreateWebAppProgress.png)
 
-1. Alguns pop-ups serão exibidos perguntando se você deseja fazer alterações de configuração para acelerar a implantação e sempre implantar este aplicativo Web. Selecione **Sim** para ambos.
+1. Aparecen algunos elementos emergentes en los que se pregunta si desea realizar cambios de configuración para acelerar la implementación e implementar siempre esta aplicación web. Seleccione **Sí** para ambas opciones.
   
-   ![A caixa de diálogo Atualizar configuração do workspace](../images/UpdateWorkspaceConfigDialog.png)
+   ![Cuadro de diálogo Actualizar configuración del área de trabajo](../images/UpdateWorkspaceConfigDialog.png)
   
-   ![A caixa de diálogo Sempre implantar na configuração do aplicativo Web](../images/AlwaysDeployDialog.png)
+   ![Cuadro de diálogo de configuración Implementar siempre en la aplicación web](../images/AlwaysDeployDialog.png)
 
-1. Um pop-up mostrando o progresso da implantação será exibido. Você pode monitorar o progresso na janela *Saída* selecionando *Exibição > Saída* e selecionando *Serviço de Aplicativo do Azure* no seletor de janela.
+1. Aparecerá un elemento emergente que muestra el progreso de la implementación. Puede supervisar el progreso en la ventana *Salida*; para ello, seleccione *Ver -> Salida* y, después, *Azure App Service* en el selector de ventanas.
   
-   ![A caixa de diálogo Progresso da implantação](../images/DeployProgress.png)
+   ![Cuadro de diálogo Progreso de la implementación](../images/DeployProgress.png)
 
-1. Depois que o código tiver sido implantado, você poderá exibir o código pela Internet. Inicie o navegador e abra seu site. O endereço será `https://<web app name>.azurewebsites.net/`. Por exemplo, para meu site, isso é `https://jimspythonwebapp2019.azurewebsites.net/`. Você verá a página do jogo.
+1. Una vez implementado el código, podrá verlo a través de Internet. Inicie el explorador y abra el sitio web. La dirección será `https://<web app name>.azurewebsites.net/`. Por ejemplo, para mi sitio web es `https://jimspythonwebapp2019.azurewebsites.net/`. Verá la página del juego.
 
-> Essas etapas criarão um Serviço de Aplicativo de camada gratuita e implantarão seu aplicativo nele. Você só pode ter uma camada gratuita por assinatura. Portanto, se você já tiver um serviço de aplicativo gratuito em execução, use a opção *Criar Aplicativo Web Avançado* e crie usando uma camada paga. Não se esqueça de excluir isso depois de concluir o workshop para parar de usar seus créditos.
+> Con estos pasos, se creará un nivel Gratis de App Service e implementará la aplicación en él. Solo puede tener un nivel Gratis por suscripción, por lo que si ya tiene un servicio de aplicaciones gratuito en ejecución, use la opción *Crear aplicación web avanzada* y cree con un nivel de pago. No olvide eliminar esto después de finalizar el taller para dejar de usar sus créditos.
 
 ## <a name="resource-groups"></a>Grupos de recursos
 
-No Azure, os recursos como o Serviço de Aplicativo ou os serviços de IA precisam pertencer a um Grupo de Recursos. Os Grupos de Recursos são agrupamentos lógicos de recursos, agrupados de maneira que faça sentido para você. Cada recurso deve pertencer a apenas um Grupo de Recursos.
+En Azure, los recursos como App Service o los servicios de inteligencia artificial deben pertenecer a un grupo de recursos. Los grupos de recursos son agrupaciones lógicas de recursos, agrupados de tal forma que tenga sentido. Cada recurso debe pertenecer a un solo grupo de recursos.
 
-Os Grupos de Recursos são úteis, pois você pode usá-los para agrupar recursos que compõem um aplicativo. Você poderá ver todos os recursos no grupo e gerenciá-los juntos, por exemplo, se desejar excluir todos os recursos, poderá excluir o Grupo de Recursos, e todos os recursos nele serão excluídos.
+Los grupos de recursos son útiles, ya que se pueden usar para agrupar los recursos que componen una aplicación. Puede ver todos los recursos del grupo y administrarlos juntos; por ejemplo, si desea eliminar todos los recursos, puede eliminar el grupo de recursos y, de esta forma, se eliminarán todos los recursos que contenga.
 
-Quando o seu Serviço de Aplicativo foi criado, ele teria sido criado dentro de um novo Grupo de Recursos, provavelmente com o nome `appsvc_linux_centralus`. Vamos adicionar todos os novos recursos a esse Grupo de Recursos no restante deste workshop e excluir esse Grupo de Recursos no final para remover todos os recursos.
+Una vez creada la instancia de App Service, esta se crearía dentro de un nuevo grupo de recursos, probablemente con un nombre parecido a `appsvc_linux_centralus`. Agregaremos todos los recursos nuevos a este grupo de recursos en el resto de este taller y eliminaremos este grupo de recursos al final para quitar todos los recursos.
 
-## <a name="next-step"></a>Próxima etapa
+## <a name="next-step"></a>Siguiente paso
 
-Nesta etapa, você implantou seu aplicativo Web na nuvem, hospedado no Azure. Na [próxima etapa](./CreateAFaceResource.md), você criará um recurso da API de Detecção Facial que pode ser usado para analisar as imagens da câmera.
+En este paso, implementó la aplicación web en la nube, hospedada en Azure. En el [paso siguiente](./CreateAFaceResource.md), creará un recurso de Face API que se puede usar para analizar las imágenes de una cámara.

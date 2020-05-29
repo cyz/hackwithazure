@@ -1,27 +1,27 @@
-# <a name="clean-up"></a>Limpar
+# <a name="clean-up"></a>Limpieza
 
-Nesta [etapa anterior](./CheckTheEmotion.md), você criou o jogo para capturar quadros da câmera e procurar emoções. Nesta etapa, você limpará os recursos do Azure.
+En el [paso anterior](./CheckTheEmotion.md), creo el juego para capturar fotogramas de la cámara y buscar emociones. En este paso limpiará los recursos de Azure.
 
-## <a name="deleting-the-resource-group"></a>Excluindo o grupo de recursos
+## <a name="deleting-the-resource-group"></a>Eliminación del grupo de recursos
 
-Tudo o que você criou para este workshop deve estar no mesmo grupo de recursos. Esse grupo de recursos foi criado quando você implantou o Serviço de Aplicativo do Azure pela primeira vez e foi usado quando você criou a API de Detecção Facial.
+Todo lo que ha creado para este taller debería estar en el mismo grupo de recursos. Este grupo de recursos se creó la primera vez que implementó Azure App Service y se usó cuando creó la Face API.
 
-Excluir esse grupo de recursos excluirá todos os recursos criados.
+Si elimina este grupo de recursos se eliminarán todos los recursos creados.
 
-1. Abra o portal do Azure em [portal.azure.com](https://portal.azure.com/?WT.mc_id=hackwithazure-hackathon-cxa). Faça logon se necessário.
+1. Abra Azure Portal en [portal.azure.com](https://portal.azure.com/?WT.mc_id=hackwithazure-hackathon-cxa). Inicie sesión si es necesario.
 
-1. Na barra de pesquisa na parte superior, pesquise pelo grupo de recursos que foi criado. Selecione-o nos resultados.
+1. En la barra de búsqueda que está arriba, busque el grupo de recursos que se creó. Selecciónelo en los resultados.
   
-   ![Pesquisando pelo grupo de recursos no Azure](../images/SearchForResourceGroup.png)
+   ![Búsqueda del grupo de recursos en Azure](../images/SearchForResourceGroup.png)
 
-1. Selecione **Excluir grupo de recursos**.
+1. Seleccione **Eliminar el grupo de recursos**.
   
-   ![Botão excluir grupo de recursos](../images/DeleteResourceGroupButton.png)
+   ![El botón Eliminar el grupo de recursos](../images/DeleteResourceGroupButton.png)
 
-1. O painel de confirmação será exibido, mostrando todos os recursos que serão excluídos com o grupo de recursos.
+1. Aparecerá el panel de confirmación en el que se muestran todos los recursos que se eliminarán junto con el grupo de recursos.
 
-   ![A confirmação de exclusão do grupo de recursos](../images/DeleteResourceGroupConfirm.png)
+   ![Confirmación de la eliminación del grupo de recursos](../images/DeleteResourceGroupConfirm.png)
 
-1. Insira o nome do grupo de recursos e selecione *Excluir*.
+1. Escriba el nombre del grupo de recursos y seleccione *Eliminar*.
 
-Todos os recursos no grupo serão excluídos.
+Se eliminarán todos los recursos de este grupo.

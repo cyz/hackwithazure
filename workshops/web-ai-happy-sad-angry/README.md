@@ -1,57 +1,57 @@
-# <a name="happy-sad-angry-workshop"></a>Workshop Feliz, Triste e Irritado
+# <a name="happy-sad-angry-workshop"></a>Taller sobre feliz, triste, enfadado
 
-Este workshop mostra como criar um jogo baseado na Web chamado **Feliz, Triste e Irritado** usando o [Python](https://www.python.org) e o [Flask](http://flask.pocoo.org) em conjunto com HTML e JavaScript em execução no [Microsoft Azure](https://azure.microsoft.com/free/students/?WT.mc_id=hackwithazure-hackathon-cxa). O jogo seleciona uma emoção e você precisa se esforçar ao máximo para expressá-la em seu rosto. Quando estiver expressando a emoção da melhor maneira, você fará uma foto com a câmera e o jogo da Web verificará qual emoção você está expressando usando a [API de Detecção Facial do Azure](https://azure.microsoft.com/services/cognitive-services/face/?WT.mc_id=hackwithazure-hackathon-cxa). Se for a mesma emoção que você foi solicitado a demonstrar, você ganhará.
+Este taller muestra cómo compilar un juego basado en web denominado **Feliz, triste, enfadado** con [Python](https://www.python.org) y [Flask](http://flask.pocoo.org) junto con algo de HTML y JavaScript que se ejecuta en [Microsoft Azure](https://azure.microsoft.com/free/students/?WT.mc_id=hackwithazure-hackathon-cxa). Este juego selecciona una emoción y el jugador tiene que tratar de reflejar esa emoción con la cara. Cuando lo haya hecho, tome una fotografía con la cámara y el juego web comprobará cuál es esa emoción mediante la [API Face de Azure](https://azure.microsoft.com/services/cognitive-services/face/?WT.mc_id=hackwithazure-hackathon-cxa). Si es la misma que le pidieron que representara, ganará.
 
-![Os resultados do jogo mostrando um jogo ganho e um perdido](./images/GameResults.png)
+![Los resultados del juego muestran una victoria y una derrota.](./images/GameResults.png)
 
-Este workshop foi desenvolvido para alunos e pode ser executado usando os serviços gratuitos disponibilizados como parte da oferta [Azure for Students](https://azure.microsoft.com/free/students/?WT.mc_id=hackwithazure-hackathon-cxa).
+Este taller está diseñado para estudiantes y se puede ejecutar con los servicios gratuitos disponibles como parte de la oferta [Azure para estudiantes](https://azure.microsoft.com/free/students/?WT.mc_id=hackwithazure-hackathon-cxa).
 
-## <a name="prerequisites"></a>Pré-requisitos
+## <a name="prerequisites"></a>Requisitos previos
 
-Para concluir o workshop, você precisará de:
+Para completar este taller, necesitará lo siguiente:
 
-* Uma conta do Azure. Inscreva-se gratuitamente usando o [Azure for Students](https://azure.microsoft.com/free/students/?WT.mc_id=hackwithazure-hackathon-cxa) ou a [conta gratuita do Azure](https://azure.microsoft.com/free/?WT.mc_id=hackwithazure-hackathon-cxa) se não estiver matriculado em uma instituição acadêmica.
+* Una cuenta de Azure. Regístrese gratuitamente en [Azure para estudiantes](https://azure.microsoft.com/free/students/?WT.mc_id=hackwithazure-hackathon-cxa) o consiga la [cuenta gratuita de Azure](https://azure.microsoft.com/free/?WT.mc_id=hackwithazure-hackathon-cxa) si no está en una institución académica.
 
 * Python
 
   * **Windows:**
 
-    Você pode instalar o Python na [Microsoft Store](https://www.microsoft.com/p/python-38/9mssztt1n39l?activetab=pivot:overviewtab&WT.mc_id=hackwithazure-hackathon-cxa). Isso configura o Python corretamente em seu caminho e não há mais etapas.
+    Puede instalar Python desde la [Tienda Windows](https://www.microsoft.com/p/python-38/9mssztt1n39l?activetab=pivot:overviewtab&WT.mc_id=hackwithazure-hackathon-cxa). Esto configura Python correctamente en PATH sin necesidad de seguir más pasos.
 
-    Se não quiser usar a Store, instale usando a [página de Downloads do Python](https://www.python.org/downloads/). Se fizer isso, marque a opção *Adicionar Python ao caminho*.
+    Si no desea usar la tienda, puede instalarlo desde la página de [descargas de Python](https://www.python.org/downloads/). Si lo hace, asegúrese de activar la opción *Add Python to PATH* (Agregar Python a la ruta de acceso).
 
-    ![A caixa de diálogo do instalador de Python destacando a opção Adicionar Python 3.8 ao caminho](./images/PythonInstaller.png)
+    ![Cuadro de diálogo del instalador de Python que resalta la opción para agregar Python 3 8 a PATH](./images/PythonInstaller.png)
 
   * **macOS**
   
-    Você pode instalar o Python usando a [página de Downloads do Python](https://www.python.org/downloads/).
+    Puede instalar Python desde la [página de descargas de Python](https://www.python.org/downloads/).
 
-    Quando o Python for instalado, ele abrirá uma janela do Localizador. Execute os scripts a seguir dentro dessa janela do Localizador para configurar certificados e adicionar o Python ao caminho:
+    Cuando Python se instale, se abrirá una ventana de Finder. Ejecute los siguientes scripts desde esa ventana de Finder para configurar los certificados y agregar Python a PATH.
 
     1. `Update Shell Profile.command`
     1. `Install Certificates.command`
 
-* [Visual Studio Code](https://code.visualstudio.com/?WT.mc_id=hackwithazure-hackathon-cxa)
+* [Visual Studio Code](https://code.visualstudio.com/?WT.mc_id=hackwithazure-hackathon-cxa)
 
-* A [Extensão de Python para o Visual Studio Code](https://marketplace.visualstudio.com/itemdetails?itemName=ms-python.python&WT.mc_id=hackwithazure-hackathon-cxa). Ela pode ser instalada de dentro do VS Code usando a guia *Extensões*.
+* La [extensión de Python para Visual Studio Code](https://marketplace.visualstudio.com/itemdetails?itemName=ms-python.python&WT.mc_id=hackwithazure-hackathon-cxa). Se puede instalar desde dentro VS Code mediante la pestaña *Extensiones*.
   
-  ![A Extensão de Python no Visual Studio Code](./images/PythonExtension.png)
+  ![La extensión de Python en Visual Studio Code](./images/PythonExtension.png)
 
-* A [Extensão do Serviço de Aplicativo do Azure para o Visual Studio Code](https://marketplace.visualstudio.com/itemdetails?itemName=ms-azuretools.vscode-azureappservice&WT.mc_id=hackwithazure-hackathon-cxa). Ela pode ser instalada de dentro do VS Code usando a guia *Extensões*.
+* La [extensión de Azure App Service para Visual Studio Code](https://marketplace.visualstudio.com/itemdetails?itemName=ms-azuretools.vscode-azureappservice&WT.mc_id=hackwithazure-hackathon-cxa). Se puede instalar desde dentro VS Code mediante la pestaña *Extensiones*.
   
-  ![A extensão do Serviço de Aplicativo do Azure no Visual Studio Code](./images/AppServiceExtension.png)
+  ![La extensión de Azure App Service en Visual Studio Code.](./images/AppServiceExtension.png)
 
-* Um laptop com uma webcam ou uma câmera externa.
+* Un portátil con una cámara web o una cámara externa.
 
 ## <a name="code-format"></a>Formato de código
 
-Todo o código neste exemplo é mostrado em blocos de código como este:
+Todo el código de este ejemplo se muestra en bloques de código como este:
 
 ```python
 print('Here is some code')
 ```
 
-Reticências são usadas para indicar outro código, removido para criar código novo, ou para facilitar a visualização do código que está sendo discutido. Por exemplo, um bloco de código como este:
+Los puntos suspensivos se usarán para indicar otro código o se eliminarán para crear código nuevo o facilitar la vista del código que se está tratando. Por ejemplo, un bloque de código similar al siguiente:
 
 ```python
 def func():
@@ -59,23 +59,23 @@ def func():
   print('end of the suite')
 ```
 
-significa que o `print('end of the suite')` precisará ficar dentro da função `func`, mas *depois* de todo o código existente nessa função
+significa que `print('end of the suite')` deberá ir dentro de la función `func`, pero *después* de todo el código existente en esta función.
 
-## <a name="steps"></a>Etapas
+## <a name="steps"></a>Pasos
 
-As etapas deste workshop são:
+Los pasos de este taller son los siguientes:
 
-1. [Criar o aplicativo Web Flask](./steps/CreateAFlaskWebApp.md)
-1. [Criar uma página da Web para o jogo](./steps/CreateTheWebPage.md)
-1. [Implantar o aplicativo Web na nuvem usando o Serviço de Aplicativo do Azure](./steps/DeployTheWebAppToTheCloud.md)
-1. [Criar um recurso da API de Detecção Facial](./steps/CreateAFaceResource.md)
-1. [Criar o jogo para capturar da câmera e verificar se há emoções](./steps/CheckTheEmotion.md)
-1. [Limpar](./Steps/CleanUp.md)
+1. [Crear la aplicación web de Flask](./steps/CreateAFlaskWebApp.md)
+1. [Crear una página web para el juego](./steps/CreateTheWebPage.md)
+1. [Implementar la aplicación web en la nube con Azure App Service](./steps/DeployTheWebAppToTheCloud.md)
+1. [Crear un recurso de Face API](./steps/CreateAFaceResource.md)
+1. [Crear el juego para capturar desde la cámara y comprobar la emoción](./steps/CheckTheEmotion.md)
+1. [Limpiar](./Steps/CleanUp.md)
 
 ## <a name="code"></a>Código
 
-Para referência, você pode encontrar o código final deste workshop na pasta [Código](https://github.com/jimbobbennett/HappySadAngryWorkshop/tree/master/code).
+Como referencia, puede encontrar el código final de este taller en la carpeta [Código](https://github.com/jimbobbennett/HappySadAngryWorkshop/tree/master/code).
 
-## <a name="clean-up-azure-resources"></a>Limpar recursos do Azure
+## <a name="clean-up-azure-resources"></a>Limpieza de los recursos de Azure
 
-Este workshop usa recursos disponibilizados na [Conta do Azure for Students como serviços gratuitos](https://azure.microsoft.com/free/free-account-students-faq/?WT.mc_id=hackwithazure-hackathon-cxa). Como há limites para o número de serviços gratuitos que você pode criar, talvez você queira excluir os recursos criados quando terminar. As instruções para fazer isso estão na última etapa, [Limpar](./steps/CleanUp.md).
+Este taller utiliza recursos que están disponibles en la [cuenta de Azure for Students como servicios gratuitos](https://azure.microsoft.com/free/free-account-students-faq/?WT.mc_id=hackwithazure-hackathon-cxa). Como hay límites en el número de servicios gratuitos que puede crear, puede que desee eliminar los recursos creados una vez que haya terminado. Las instrucciones para hacerlo se encuentran en el último paso: [limpieza](./steps/CleanUp.md).
